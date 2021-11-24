@@ -62,7 +62,7 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
-
+  // oyunu otomatik baslat 
   useEffect(() => {
     cardShuffle()
   }, [])
