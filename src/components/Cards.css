@@ -4,6 +4,20 @@
 
 .card img {
   display: block;
-  border: 2px solid rgb(214, 156, 245);
+  border: 2px solid rgb(164, 100, 199);
   border-radius: 8px;
+}
+
+.card .card-front {
+    transform: rotateY(90deg);
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all 400ms;
+
+}
+
+.flipped .card-front {
+    transform: rotateY(0deg);
+    backdrop-filter: blur(15px);
+    transition: all 300ms;
 }

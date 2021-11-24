@@ -1,15 +1,17 @@
 import "./Cards.css";
 
-export default function Cards({ card, handleChoice }) {
+export default function Cards({ card, handleChoice, flipped, disabled }) {
 
     const handleClick = () => {
-        handleChoice(card)
+        if (!disabled) { // default deger false, disabled true ise diger kartlara tiklama yapilmasin
+            handleChoice(card)
+        }
     }
 
   return (
     <div className="card">
-      <div>
-        <img className="card-front" src={card.src} alt="card front" />
+      <div className={flipped ? 'flipped' : ''}>
+        <img className="card-front " src={card.src} alt="card front" />
         <img className="card-cover " 
         src="/img/cover.jpeg" 
         alt="card cover" 
