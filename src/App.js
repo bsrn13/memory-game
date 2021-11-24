@@ -78,9 +78,9 @@ function App() {
     if (!localStorage.getItem(`high-score`)) {
       localStorage.setItem(`high-score`, 999);
     }
-    cardShuffle();
+    cardShuffle();// eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // console.log(cards);
+  //console.log(cards);
 
   // console.log( choiceOne, choiceTwo)
   // console.log(turns)
