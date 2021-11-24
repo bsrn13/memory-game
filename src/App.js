@@ -18,6 +18,8 @@ function App() {
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
+  let highScore = localStorage.getItem(`high-score`);
+
   //card shuffle
   const cardShuffle = () => {
     const shuffledCards = [...cardImages, ...cardImages]
@@ -28,8 +30,17 @@ function App() {
     setChoiceTwo(null);
     setCards(shuffledCards);
     setTurns(0);
+
+    saveStorage();
   };
 
+  //localstorage functions
+  function saveStorage() {
+    let highScore = localStorage.getItem(`high-score`);
+    if (highScore > turns && turns !== 0) {
+      localStorage.setItem(`high-score`, turns);
+    }
+  }
   // console.log(cards, turns);
 
   // handle choice
@@ -62,10 +73,13 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
-  // oyunu otomatik baslat 
+  // oyunu otomatik baslat
   useEffect(() => {
-    cardShuffle()
-  }, [])
+    if (!localStorage.getItem(`high-score`)) {
+      localStorage.setItem(`high-score`, 999);
+    }
+    cardShuffle();
+  }, []);
   // console.log(cards);
 
   // console.log( choiceOne, choiceTwo)
@@ -80,8 +94,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Magic Match</h1>
-      <button onClick={cardShuffle}>New Game</button>
+      <h1>Memory Game</h1>
+      <button onClick={cardShuffle}>Restart</button>
       <div className="card-grid">
         {cards.map((card) => (
           <Cards
@@ -94,6 +108,7 @@ function App() {
         ))}
       </div>
       <p>Turns: {turns}</p>
+      <p>High Score: {highScore > 100 ? 0 : highScore}</p>
     </div>
   );
 }
